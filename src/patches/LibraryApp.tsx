@@ -1,7 +1,7 @@
 import { ServerAPI, afterPatch, wrapReactType } from 'decky-frontend-lib';
 import { ReactElement } from 'react';
-import { GameStats } from './components/GameStats/GameStats';
-import { normalize } from './utils';
+import { GameStats } from '../components/GameStats/GameStats';
+import { normalize } from '../utils';
 
 // I hate this method
 export const patchAppPage = (serverApi: ServerAPI) => {

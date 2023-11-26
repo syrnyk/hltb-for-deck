@@ -25,6 +25,7 @@ const useHltb = (appId: number, game: string, serverApi: ServerAPI) => {
         allStylesStat: '--',
         gameId: undefined,
         lastUpdatedAt: new Date(),
+        showStats: true,
     });
     const data = {
         searchType: 'games',
@@ -135,6 +136,7 @@ const useHltb = (appId: number, game: string, serverApi: ServerAPI) => {
                                     : '--',
                             gameId: gameStats.game_id,
                             lastUpdatedAt: new Date(),
+                            showStats: cache?.showStats ?? true,
                         };
                     }
                     setStats(newStats);

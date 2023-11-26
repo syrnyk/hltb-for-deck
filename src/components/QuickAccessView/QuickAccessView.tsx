@@ -9,10 +9,12 @@ import {
 import {
     clearCache,
     hideDetailsKey,
+    statPreferencesKey,
     styleKey,
     updateCache,
 } from '../../hooks/Cache';
 import { usePreference, useStyle } from '../../hooks/useStyle';
+import { useStatPreferences } from '../../hooks/useStatPreferences';
 
 const styleOptions = [
     { data: 0, label: 'Default', value: 'default' },
@@ -29,6 +31,28 @@ export const QuickAccessView = () => {
     const style = useStyle();
     // probably overkill for something so simple but it's fine :)
     const hideDetails = usePreference();
+
+    const preferences = useStatPreferences();
+
+    const toggleShowMain = () => {
+        preferences.showMain = !preferences.showMain;
+        updateCache(statPreferencesKey, preferences);
+    };
+
+    const toggleShowMainPlus = () => {
+        preferences.showMainPlus = !preferences.showMainPlus;
+        updateCache(statPreferencesKey, preferences);
+    };
+
+    const toggleShowComplete = () => {
+        preferences.showComplete = !preferences.showComplete;
+        updateCache(statPreferencesKey, preferences);
+    };
+
+    const toggleShowAllStyles = () => {
+        preferences.showAllStyles = !preferences.showAllStyles;
+        updateCache(statPreferencesKey, preferences);
+    };
     return (
         <PanelSection>
             <PanelSectionRow>
@@ -57,6 +81,38 @@ export const QuickAccessView = () => {
                     description='Hides "View Details" button on HLTB Stats'
                     checked={hideDetails}
                     onChange={(checked) => updateCache(hideDetailsKey, checked)}
+                />
+            </PanelSectionRow>
+            <PanelSectionRow>
+                <ToggleField
+                    label="Toggle main stat"
+                    description="Shows/Hides just the main stat"
+                    checked={preferences.showMain}
+                    onChange={() => toggleShowMain()}
+                />
+            </PanelSectionRow>
+            <PanelSectionRow>
+                <ToggleField
+                    label="Toggle main+ stat"
+                    description="Shows/Hides just the main+ stat"
+                    checked={preferences.showMainPlus}
+                    onChange={() => toggleShowMainPlus()}
+                />
+            </PanelSectionRow>
+            <PanelSectionRow>
+                <ToggleField
+                    label="Toggle completionist stat"
+                    description="Shows/Hides just the completionist stat"
+                    checked={preferences.showComplete}
+                    onChange={() => toggleShowComplete()}
+                />
+            </PanelSectionRow>
+            <PanelSectionRow>
+                <ToggleField
+                    label="Toggle 'all play styles' stat"
+                    description="Shows/Hides just the all play styles stat"
+                    checked={preferences.showAllStyles}
+                    onChange={() => toggleShowAllStyles()}
                 />
             </PanelSectionRow>
             <PanelSectionRow>

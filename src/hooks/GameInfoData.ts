@@ -16,6 +16,7 @@ export type HLTBStats = {
     allStylesStat: string;
     lastUpdatedAt: Date;
     gameId?: number;
+    showStats: boolean;
 };
 
 export type GameStatsData = {
