@@ -4,6 +4,7 @@ import { usePreference, useStyle } from '../../hooks/useStyle';
 import style from './style';
 import { useEffect, useState } from 'react';
 import { useStatPreferences } from '../../hooks/useStatPreferences';
+import useLocalization from '../../hooks/useLocalization';
 
 type GameStatsProps = {
     serverApi: ServerAPI;
@@ -14,6 +15,7 @@ type GameStatsProps = {
 
 export const GameStats = ({ serverApi, game, appId, id }: GameStatsProps) => {
     const [gameLaunching, setGameLaunching] = useState<boolean>(false);
+    const lang = useLocalization();
     const handleGameActionStart = (
         _actionType: number,
         strAppId: string,
@@ -95,32 +97,40 @@ export const GameStats = ({ serverApi, game, appId, id }: GameStatsProps) => {
                     }}
                 >
                     <li style={{ display: showMain ? 'block' : 'none' }}>
-                        <p className="hltb-gametime">{mainStat} hours</p>
-                        <p className="hltb-label">Main Story</p>
+                        <p className="hltb-gametime">
+                            {mainStat} {lang('hours')}
+                        </p>
+                        <p className="hltb-label">{lang('mainStory')}</p>
                     </li>
                     <li
                         style={{
                             display: showMainPlus ? 'block' : 'none',
                         }}
                     >
-                        <p className="hltb-gametime">{mainPlusStat} hours</p>
-                        <p className="hltb-label">Main + Extras</p>
+                        <p className="hltb-gametime">
+                            {mainPlusStat} {lang('hours')}
+                        </p>
+                        <p className="hltb-label">{lang('mainPlusExtras')}</p>
                     </li>
                     <li
                         style={{
                             display: showComplete ? 'block' : 'none',
                         }}
                     >
-                        <p className="hltb-gametime">{completeStat} hours</p>
-                        <p className="hltb-label">Completionist</p>
+                        <p className="hltb-gametime">
+                            {completeStat} {lang('hours')}
+                        </p>
+                        <p className="hltb-label">{lang('completionist')}</p>
                     </li>
                     <li
                         style={{
                             display: showAllStyles ? 'block' : 'none',
                         }}
                     >
-                        <p className="hltb-gametime">{allStylesStat} hours</p>
-                        <p className="hltb-label">All Styles</p>
+                        <p className="hltb-gametime">
+                            {allStylesStat} {lang('hours')}
+                        </p>
+                        <p className="hltb-label">{lang('allStyles')}</p>
                     </li>
                     {gameId && !hideDetails && (
                         <li>
@@ -132,7 +142,7 @@ export const GameStats = ({ serverApi, game, appId, id }: GameStatsProps) => {
                                     )
                                 }
                             >
-                                View Details
+                                {lang('viewDetails')}
                             </DialogButtonPrimary>
                         </li>
                     )}

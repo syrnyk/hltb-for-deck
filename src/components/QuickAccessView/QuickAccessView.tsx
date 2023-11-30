@@ -15,13 +15,7 @@ import {
 } from '../../hooks/Cache';
 import { usePreference, useStyle } from '../../hooks/useStyle';
 import { useStatPreferences } from '../../hooks/useStatPreferences';
-
-const styleOptions = [
-    { data: 0, label: 'Default', value: 'default' },
-    { data: 1, label: '"Clean"', value: 'clean' },
-    { data: 2, label: '"Clean" Left', value: 'clean-left' },
-    { data: 3, label: '"Clean" Default', value: 'clean-default' },
-] as const;
+import useLocalization from '../../hooks/useLocalization';
 
 export const QuickAccessView = () => {
     const handleClearCache = () => {
@@ -33,6 +27,15 @@ export const QuickAccessView = () => {
     const hideDetails = usePreference();
 
     const preferences = useStatPreferences();
+
+    const lang = useLocalization();
+
+    const styleOptions = [
+        { data: 0, label: lang('default'), value: 'default' },
+        { data: 1, label: lang('clean'), value: 'clean' },
+        { data: 2, label: lang('cleanLeft'), value: 'clean-left' },
+        { data: 3, label: lang('cleanDefault'), value: 'clean-default' },
+    ] as const;
 
     const toggleShowMain = () => {
         preferences.showMain = !preferences.showMain;
@@ -57,9 +60,9 @@ export const QuickAccessView = () => {
         <PanelSection>
             <PanelSectionRow>
                 <DropdownItem
-                    label="HLTB Style"
-                    description='The "Clean" styles are intended to work with the CSS Loader Theme "Clean Gameview"'
-                    menuLabel="HLTB Style"
+                    label={lang('hltbStyle')}
+                    description={lang('cleanDesc')}
+                    menuLabel={lang('hltbStyle')}
                     rgOptions={styleOptions.map((o) => ({
                         data: o.data,
                         label: o.label,
@@ -77,47 +80,47 @@ export const QuickAccessView = () => {
             </PanelSectionRow>
             <PanelSectionRow>
                 <ToggleField
-                    label='Hide "View Details"'
-                    description='Hides "View Details" button on HLTB Stats'
+                    label={lang('hideViewDetails')}
+                    description={lang('hideViewDetailsDesc')}
                     checked={hideDetails}
                     onChange={(checked) => updateCache(hideDetailsKey, checked)}
                 />
             </PanelSectionRow>
             <PanelSectionRow>
                 <ToggleField
-                    label="Toggle main stat"
-                    description="Shows/Hides just the main stat"
+                    label={lang('toggleMainStat')}
+                    description={lang('toggleMainStatDesc')}
                     checked={preferences.showMain}
                     onChange={() => toggleShowMain()}
                 />
             </PanelSectionRow>
             <PanelSectionRow>
                 <ToggleField
-                    label="Toggle main+ stat"
-                    description="Shows/Hides just the main+ stat"
+                    label={lang('toggleMainPlusStat')}
+                    description={lang('toggleMainPlusStatDesc')}
                     checked={preferences.showMainPlus}
                     onChange={() => toggleShowMainPlus()}
                 />
             </PanelSectionRow>
             <PanelSectionRow>
                 <ToggleField
-                    label="Toggle completionist stat"
-                    description="Shows/Hides just the completionist stat"
+                    label={lang('toggleCompletionistStat')}
+                    description={lang('toggleCompletionistStatDesc')}
                     checked={preferences.showComplete}
                     onChange={() => toggleShowComplete()}
                 />
             </PanelSectionRow>
             <PanelSectionRow>
                 <ToggleField
-                    label="Toggle 'all play styles' stat"
-                    description="Shows/Hides just the all play styles stat"
+                    label={lang('toggleAllPlayStylesStat')}
+                    description={lang('toggleAllPlayStylesStatDesc')}
                     checked={preferences.showAllStyles}
                     onChange={() => toggleShowAllStyles()}
                 />
             </PanelSectionRow>
             <PanelSectionRow>
                 <ButtonItem layout="below" onClick={handleClearCache}>
-                    Clear Cache
+                    {lang('clearCache')}
                 </ButtonItem>
             </PanelSectionRow>
         </PanelSection>

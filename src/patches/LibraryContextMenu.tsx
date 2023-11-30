@@ -4,12 +4,10 @@ import {
     fakeRenderComponent,
     findInReactTree,
     findModuleChild,
-    MenuItem,
-    Navigation,
     Patch,
 } from 'decky-frontend-lib';
 
-import { setShowHide } from '../hooks/Cache';
+import { HLTBContextMenuItem } from '../components/HLTBContextMenuItem';
 
 const addStatsSettingsMenuItem = (children: any[], appId: number) => {
     children.find((x: any) => x?.key === 'properties');
@@ -26,17 +24,7 @@ const addStatsSettingsMenuItem = (children: any[], appId: number) => {
     children.splice(
         propertiesMenuItem,
         0,
-        <MenuItem
-            key="hltb-for-deck-stats-settings"
-            onSelected={() => {
-                // little hacky but it works
-                setShowHide(`${appId}`);
-                Navigation.Navigate('/hltb-for-deck/loading');
-                setTimeout(() => Navigation.NavigateBack(), 1000);
-            }}
-        >
-            Show/Hide HLTB Stats
-        </MenuItem>
+        <HLTBContextMenuItem appId={`${appId}`} />
     );
 };
 
