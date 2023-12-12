@@ -55,7 +55,7 @@ export default (
 }
 
 .hltb-info ul li {
-    width: 25%;
+    flex: 0 1 auto;
     text-align: center;
 }
 
