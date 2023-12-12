@@ -1,7 +1,7 @@
 ## HLTB for Deck, How Long to Beat integration for the Steam Deck (v1.4.0)
 
 ### Localization support
-Added the ability to localize the plugin. Currently supported languages are English and Brazilian Portuguese. Reach out to me if you would like this plugin localized in your language.
+Added the ability to localize the plugin. Currently supported languages are English and Brazilian Portuguese. Reach out to me if you would like this plugin localized in your language. Thanks to vincentvanvega on the SteamDeckHomebrew Discord for the Portuguese translation!
 
 ### Customize visbility of plugin per game
 
