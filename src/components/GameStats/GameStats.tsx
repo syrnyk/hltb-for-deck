@@ -91,7 +91,6 @@ export const GameStats = ({ serverApi, game, appId, id }: GameStatsProps) => {
             >
                 <ul
                     style={{
-                        width: '100%',
                         display: 'flex',
                         justifyContent: 'space-evenly',
                     }}

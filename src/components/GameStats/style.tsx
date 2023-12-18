@@ -48,20 +48,21 @@ export default (
     padding: 5px 35px;
     margin: 0px;
     display: flex;
+    flex: 0 1 auto;    
 }
 
 .hltb-info-clean ul {
     display: block;
+    flex-direction: column;
 }
 
 .hltb-info ul li {
-    flex: 0 1 auto;
     text-align: center;
 }
 
-.hltb-info-clean ul li {
-    width: 100%;
-}
+// .hltb-info-clean ul li {
+//     width: 100%;
+// }
 
 .hltb-info p {
     margin: 0;
