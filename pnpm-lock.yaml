@@ -1,12 +1,12 @@
 lockfileVersion: '6.0'
 
 dependencies:
-  decky-frontend-lib:
-    specifier: ^3.23.1
-    version: 3.23.1
   fast-levenshtein:
     specifier: ^3.0.0
     version: 3.0.0
+  hltb-for-deck:
+    specifier: 'link:'
+    version: 'link:'
   localforage:
     specifier: ^1.10.0
     version: 1.10.0
@@ -48,6 +48,9 @@ devDependencies:
   '@types/react-dom':
     specifier: ^18.2.15
     version: 18.2.15
+  decky-frontend-lib:
+    specifier: ^3.23.1
+    version: 3.23.1
   husky:
     specifier: ^8.0.3
     version: 8.0.3
@@ -758,7 +761,7 @@ packages:
 
   /decky-frontend-lib@3.23.1:
     resolution: {integrity: sha512-6JKtSCjk5liJ+xBqOPZvPSp1HdkaQ+j/I19bGSk+cWuxSrodyduduXKJE4p4GJ/+KgFdn0yg/8tRi+DSqmBvdw==}
-    dev: false
+    dev: true
 
   /deepmerge@4.3.1:
     resolution: {integrity: sha512-3sUqbMEc77XqpdNO7FRyRog+eW3ph+GYCbj+rK+uYyRMuwsVy0rMiVtPn+QJlKFvWP/1PYpapqYn0Me2knFn+A==}
