@@ -1,11 +1,12 @@
-import { ServerAPI, afterPatch, wrapReactType } from 'decky-frontend-lib';
+import { afterPatch, wrapReactType } from '@decky/ui';
+import { routerHook } from '@decky/api';
 import { ReactElement } from 'react';
 import { GameStats } from '../components/GameStats/GameStats';
 import { normalize } from '../utils';
 
 // I hate this method
-export const patchAppPage = (serverApi: ServerAPI) => {
-    return serverApi.routerHook.addPatch(
+export const patchAppPage = () => {
+    return routerHook.addPatch(
         '/library/app/:appid',
         (props: { path: string; children: ReactElement }) => {
             afterPatch(
@@ -55,7 +56,6 @@ export const patchAppPage = (serverApi: ServerAPI) => {
                             const component = (
                                 <GameStats
                                     id="hltb-for-deck"
-                                    serverApi={serverApi}
                                     game={game}
                                     appId={appId}
                                 />
