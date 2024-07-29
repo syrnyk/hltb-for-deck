@@ -31,7 +31,7 @@ const useHltb = (appId: number, game: string, serverApi: ServerAPI) => {
         searchType: 'games',
         searchTerms: game.split(' '),
         searchPage: 1,
-        size: 50,
+        size: 20,
         searchOptions: {
             games: {
                 userId: 0,
