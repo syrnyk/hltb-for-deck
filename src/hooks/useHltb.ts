@@ -57,7 +57,7 @@ const useHltb = (appId: number, game: string, serverApi: ServerAPI) => {
                 console.log(`get HLTB data for ${appId} and ${game}`);
                 const res: ServerResponse<HLTBResult> =
                     await serverApi.fetchNoCors<HLTBResult>(
-                        'https://howlongtobeat.com/api/search',
+                        'https://howlongtobeat.com/api/search/4b4cbe570602c88660f7df8ea0cb6b6e',
                         {
                             method: 'POST',
                             headers: {
