@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { normalize } from '../utils';
 import { GameStatsData, HLTBStats, SearchResults } from './GameInfoData';
 import { getCache, updateCache } from './Cache';
+import useHltbApiKey from './useHltbApiKey';
 
 // update cache after 12 hours
 const needCacheUpdate = (lastUpdatedAt: Date) => {
@@ -46,6 +47,7 @@ const useHltb = (appId: number, game: string) => {
             randomizer: 0,
         },
     };
+    const apiKey = useHltbApiKey();
     useEffect(() => {
         const getData = async () => {
             const cache = await getCache<HLTBStats>(`${appId}`);
@@ -55,7 +57,7 @@ const useHltb = (appId: number, game: string) => {
                 console.log(`get HLTB data for ${appId} and ${game}`);
                 try {
                     const result = await fetchNoCors(
-                        'https://howlongtobeat.com/api/search/4b4cbe570602c88660f7df8ea0cb6b6e',
+                        `https://howlongtobeat.com/api/search/${apiKey}`,
                         {
                             method: 'POST',
                             headers: {
@@ -170,7 +172,7 @@ const useHltb = (appId: number, game: string) => {
         if (appId) {
             getData();
         }
-    }, [appId]);
+    }, [appId, apiKey]);
 
     return {
         ...stats,
