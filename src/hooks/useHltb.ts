@@ -6,16 +6,96 @@ import { GameStatsData, HLTBStats, SearchResults } from './GameInfoData';
 import { getCache, updateCache } from './Cache';
 
 // update cache after 12 hours
-const needCacheUpdate = (lastUpdatedAt: Date) => {
+function needCacheUpdate(lastUpdatedAt: Date) {
     const now = new Date();
     const durationMs = Math.abs(lastUpdatedAt.getTime() - now.getTime());
 
     const hoursBetweenDates = durationMs / (60 * 60 * 1000);
     return hoursBetweenDates > 12;
-};
+}
+
+// NOTE: Close reproduction of https://github.com/ScrappyCocco/HowLongToBeat-PythonAPI/pull/26
+async function fetchApiKey() {
+    try {
+        const url = 'https://howlongtobeat.com';
+        const response = await fetchNoCors(url);
+
+        if (response.status === 200) {
+            const html = await response.text();
+            const parser = new DOMParser();
+            const doc = parser.parseFromString(html, 'text/html');
+            const scripts = doc.querySelectorAll('script');
+
+            for (const script of scripts) {
+                if (script.src.includes('_app-')) {
+                    const scriptUrl = url + new URL(script.src).pathname;
+                    const scriptResponse = await fetchNoCors(scriptUrl);
+
+                    if (scriptResponse.status === 200) {
+                        const scriptText = await scriptResponse.text();
+                        const pattern =
+                            /"\/api\/search\/".concat\("([a-zA-Z0-9]+)"\)/;
+                        const matches = scriptText.match(pattern);
+
+                        if (matches && matches[1]) {
+                            return matches[1];
+                        }
+                    }
+                }
+            }
+
+            console.error('HLTB - failed to get API key!');
+        } else {
+            console.error(`HLTB - ${response}`);
+        }
+    } catch (error) {
+        console.error(error);
+    }
+
+    return null;
+}
+
+async function fetchSearchResultsWithKey(data: object, apiKey: string) {
+    return fetchNoCors(`https://howlongtobeat.com/api/search/${apiKey}`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            Origin: 'https://howlongtobeat.com',
+            Referer: 'https://howlongtobeat.com/',
+            Authority: 'howlongtobeat.com',
+            'User-Agent':
+                'Chrome: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.113 Safari/537.36',
+        },
+        body: JSON.stringify(data),
+    });
+}
+
+let CachedApiKey: string | null = null;
+async function fetchSearchResults(data: object) {
+    CachedApiKey = CachedApiKey || (await fetchApiKey());
+    if (CachedApiKey === null) {
+        // error already logged
+        return null;
+    }
+
+    let results = await fetchSearchResultsWithKey(data, CachedApiKey);
+    if (results.status === 200) {
+        return results;
+    }
+
+    // key might have expired, fetch a new one and try again
+    CachedApiKey = await fetchApiKey();
+    if (CachedApiKey === null) {
+        // error already logged
+        return null;
+    }
+
+    // Whatever the response is, we propagate it to be logged
+    return await fetchSearchResultsWithKey(data, CachedApiKey);
+}
 
 // Hook to get data from HLTB
-const useHltb = (appId: number, game: string) => {
+function useHltb(appId: number, game: string) {
     const [stats, setStats] = useState<HLTBStats>({
         mainStat: '--',
         mainPlusStat: '--',
@@ -46,6 +126,7 @@ const useHltb = (appId: number, game: string) => {
             randomizer: 0,
         },
     };
+
     useEffect(() => {
         const getData = async () => {
             const cache = await getCache<HLTBStats>(`${appId}`);
@@ -54,21 +135,12 @@ const useHltb = (appId: number, game: string) => {
             } else {
                 console.log(`get HLTB data for ${appId} and ${game}`);
                 try {
-                    const result = await fetchNoCors(
-                        'https://howlongtobeat.com/api/search/4b4cbe570602c88660f7df8ea0cb6b6e',
-                        {
-                            method: 'POST',
-                            headers: {
-                                'Content-Type': 'application/json',
-                                Origin: 'https://howlongtobeat.com',
-                                Referer: 'https://howlongtobeat.com/',
-                                Authority: 'howlongtobeat.com',
-                                'User-Agent':
-                                    'Chrome: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.113 Safari/537.36',
-                            },
-                            body: JSON.stringify(data),
-                        }
-                    );
+                    const result = await fetchSearchResults(data);
+                    if (!result) {
+                        // failed to get api key, error already logged
+                        return;
+                    }
+
                     if (result.status === 200) {
                         const results: SearchResults = await result.json();
                         results.data.forEach((game) => {
@@ -160,7 +232,7 @@ const useHltb = (appId: number, game: string) => {
                         setStats(newStats);
                         updateCache(`${appId}`, newStats);
                     } else {
-                        console.error(result);
+                        console.error(`HLTB - ${result}`);
                     }
                 } catch (error) {
                     console.error(error);
@@ -175,6 +247,6 @@ const useHltb = (appId: number, game: string) => {
     return {
         ...stats,
     };
-};
+}
 
 export default useHltb;
