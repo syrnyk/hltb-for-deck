@@ -49,13 +49,7 @@ export const patchAppPage = () => {
                             x?.props?.className?.includes(
                                 appDetailsClasses.InnerContainer
                             )
-                    ).props?.children;
-                    // This always seems to be -1
-                    const hltbComponentIndex = componentToSplice.findIndex(
-                        (child: ReactElement) => {
-                            return child?.props?.id === 'hltb-for-deck';
-                        }
-                    );
+                    )?.props?.children;
 
                     // We want to splice into the component before this point
                     const spliceIndex = componentToSplice?.findIndex(
@@ -74,36 +68,28 @@ export const patchAppPage = () => {
                         }
                     );
 
-                    const component = (
-                        <GameStats
-                            id="hltb-for-deck"
-                            game={game}
-                            appId={appId}
-                        />
-                    );
-
-                    if (hltbComponentIndex < 0) {
-                        if (spliceIndex > -1) {
-                            componentToSplice?.splice(
-                                spliceIndex,
-                                0,
-                                component
-                            );
-                        } else {
-                            console.error(
-                                'hltb-for-deck could not find where to splice!'
-                            );
-                        }
-                    } else {
+                    if (spliceIndex > -1) {
                         componentToSplice?.splice(
-                            hltbComponentIndex,
-                            1,
-                            component
+                            spliceIndex,
+                            0,
+                            <GameStats
+                                id="hltb-for-deck"
+                                game={game}
+                                appId={appId}
+                            />
+                        );
+                    } else {
+                        // If the component is not available for splicing, we could be in some
+                        // non-game page, like soundtracks. In this case it's not an error!
+                        (componentToSplice ? console.error : console.debug)(
+                            'hltb-for-deck could not find where to splice!'
                         );
                     }
+
                     return ret;
                 }
             );
+
             afterPatch(routeProps, 'renderFunc', patchHandler);
         }
         return routerTree;
