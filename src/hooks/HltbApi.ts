@@ -1,12 +1,12 @@
 import { fetchNoCors } from '@decky/api';
+import { get } from 'fast-levenshtein';
+import { normalize } from '../utils';
 import {
     GameData,
     GamePageData,
     HLTBGameStats,
     SearchResults,
 } from './GameInfoData';
-import { normalize } from '../utils';
-import { get } from 'fast-levenshtein';
 
 // NOTE: Close reproduction of https://github.com/ScrappyCocco/HowLongToBeat-PythonAPI/pull/26
 const SearchKey = Symbol('Search Key');
@@ -29,7 +29,7 @@ async function fetchSearchKey() {
                     if (scriptResponse.status === 200) {
                         const scriptText = await scriptResponse.text();
                         const pattern =
-                            /\/api\/find\/"\.concat\("([a-zA-Z0-9]+)"\)\.concat\("([a-zA-Z0-9]+)"\)/;
+                            /\/api\/lookup\/"\.concat\("([a-zA-Z0-9]+)"\)\.concat\("([a-zA-Z0-9]+)"\)/;
                         const matches = scriptText.match(pattern);
 
                         if (matches && matches[1]) {
@@ -157,7 +157,7 @@ async function fetchSearchResultsWithKey(gameName: string, apiKey: string) {
         },
     };
 
-    return fetchNoCors(`https://howlongtobeat.com/api/find/${apiKey}`, {
+    return fetchNoCors(`https://howlongtobeat.com/api/lookup/${apiKey}`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
