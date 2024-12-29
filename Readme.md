@@ -9,15 +9,28 @@ Built with [Decky Loader](https://github.com/SteamDeckHomebrew/decky-loader).
 > [!IMPORTANT]  
 > Please note that HLTB does not have an official public API. This plugin (and this fork in particular) is heavily depending on the API changes discovered and implemented in [HowLongToBeat-PythonAPI repository](https://github.com/ScrappyCocco/HowLongToBeat-PythonAPI). Every change done to API by HLTB breaks this plugin workability. Unfortunately, there may and will be delays in restoring the plugin workability.
 
+> [!IMPORTANT]  
+> This fork is not currently available in **Decky Store** because it was not authorized yet by the previous maintainer. 
+
 ## Features
 
 - On an app page, shows four main stats offered by How Long to Beat
-- Clicking View Details will take you to their site for the game
+- Clicking **View Details** will take you to their site for the game
 - Results are cached for two hours (cache can be cleared from QAM page for HLTB for Deck)
 
 ## Screenshots
 
 ![](images/image001.png)
+
+## Manual installation in Decky
+
+1. Proceed to **Decky Settings** &rarr; **General**.
+2. Enable **Developer Mode**.
+3. Then go to newly appeared **Developer** tab &rarr; **Install Plugin from ZIP File** and click **Browse**. Or you can try directly installing from via link by entering it to **Install Plugin from URL** text field.
+4. Select the ZIP archive or enter following link: [https://github.com/morwy/hltb-for-deck/releases/latest/hltb-for-deck.zip](https://github.com/morwy/hltb-for-deck/releases/latest/hltb-for-deck.zip).
+5. After installing go to **Plugins**.
+6. Select **HLTB for Deck** settings and then click **Reload**.
+7. **HLTB for Deck** plugin should change its version to latest one, indicating successful installation.
 
 ## New Features (as of 1.4.0)
 
