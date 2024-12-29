@@ -9,6 +9,7 @@ jobs:
       permissions:
           contents: write
       outputs:
+        BRANCH_NAME: ${{ steps.read_branch.outputs.branch_name }}
         NEW_TAG_NAME: ${{ steps.increment-npm-version.outputs.v-version }}
         RELEASE_ENTRY_TEXT: ${{ steps.git-cliff-release-entry.outputs.content }}
 
@@ -66,10 +67,14 @@ jobs:
             contents: write
         needs: [increment-version]
         steps:
-            - name: Checkout latest changes
+            - name: Checkout repository
               uses: actions/checkout@v4
               with:
+                ref: ${{ needs.increment-version.outputs.BRANCH_NAME }}
                 fetch-depth: 0
+
+            - name: Fetch the latest changes
+              run: git pull origin ${{ needs.increment-version.outputs.BRANCH_NAME }}
 
             - name: Setup node
               uses: actions/setup-node@v4
