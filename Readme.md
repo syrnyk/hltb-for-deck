@@ -10,7 +10,7 @@ Built with [Decky Loader](https://github.com/SteamDeckHomebrew/decky-loader).
 > Please note that HLTB does not have an official public API. This plugin (and this fork in particular) is heavily depending on the API changes discovered and implemented in [HowLongToBeat-PythonAPI repository](https://github.com/ScrappyCocco/HowLongToBeat-PythonAPI). Every change done to API by HLTB breaks this plugin workability. Unfortunately, there may and will be delays in restoring the plugin workability.
 
 > [!IMPORTANT]  
-> This fork is not currently available in **Decky Store** because it was not authorized yet by the previous maintainer. 
+> This fork is not currently available in **Decky Store** because it was not authorized yet by the previous maintainer. Due to this users have to install releases manually. Please refer to the chapter **Manual installation in Decky** below.
 
 ## Features
 
