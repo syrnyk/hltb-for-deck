@@ -27,7 +27,7 @@ Built with [Decky Loader](https://github.com/SteamDeckHomebrew/decky-loader).
 1. Proceed to **Decky Settings** &rarr; **General**.
 2. Enable **Developer Mode**.
 3. Then go to newly appeared **Developer** tab &rarr; **Install Plugin from ZIP File** and click **Browse**. Or you can try directly installing from via link by entering it to **Install Plugin from URL** text field.
-4. Select the ZIP archive or enter following link: [https://github.com/morwy/hltb-for-deck/releases/latest/hltb-for-deck.zip](https://github.com/morwy/hltb-for-deck/releases/latest/hltb-for-deck.zip).
+4. Select the ZIP archive or enter following link: [https://github.com/morwy/hltb-for-deck/releases/latest/download/hltb-for-deck.zip](https://github.com/morwy/hltb-for-deck/releases/latest/download/hltb-for-deck.zip).
 5. After installing go to **Plugins**.
 6. Select **HLTB for Deck** settings and then click **Reload**.
 7. **HLTB for Deck** plugin should change its version to latest one, indicating successful installation.
