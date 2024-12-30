@@ -54,6 +54,7 @@ jobs:
           OUTPUT: CHANGELOG.md
 
       - name: Commit CHANGELOG.md and package.json
+        if: github.ref_name == 'main'
         id: change-log-commit
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
