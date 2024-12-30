@@ -2,6 +2,26 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.0.3] - 2024-12-30
+
+### 🐛 Bug Fixes
+
+- Handle special characters in game names preventing HLTB lookup (#7)
+
+### 💼 Other
+
+- *(deps)* Bump reedyuk/npm-version in the minor group (#6)
+
+### 📚 Documentation
+
+- Added instruction for manual installation to README.md
+- Added instruction for manual installation to README.md
+- Corrected download link for latest releases
+
+### ⚙️ Miscellaneous Tasks
+
+- Comitting CHANGELOG.md and incremented package version only for main branch
+
 ## [2.0.2] - 2024-12-29
 
 ### 🐛 Bug Fixes
@@ -26,6 +46,7 @@ All notable changes to this project will be documented in this file.
 - Checking out latest changes for release creation
 - *(release)* Preparing for upcoming release (CHANGELOG.md, package.json)
 - Checking out latest changes for release creation
+- *(release)* Preparing for upcoming release (CHANGELOG.md, package.json)
 
 ## [2.0.1] - 2024-12-14
 
