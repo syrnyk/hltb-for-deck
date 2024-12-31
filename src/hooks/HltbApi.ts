@@ -164,18 +164,21 @@ async function fetchSearchResultsWithKey(gameName: string, apiKey: string) {
         },
     };
 
-    return fetchNoCors(`https://howlongtobeat.com/api/lookup/${apiKey}`, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-            Origin: 'https://howlongtobeat.com',
-            Referer: 'https://howlongtobeat.com/',
-            Authority: 'howlongtobeat.com',
-            'User-Agent':
-                'Chrome: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.113 Safari/537.36',
-        },
-        body: JSON.stringify(data),
-    });
+    return fetchNoCors(
+        `https://howlongtobeat.com/api/${searchApiRoot}${apiKey}`,
+        {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                Origin: 'https://howlongtobeat.com',
+                Referer: 'https://howlongtobeat.com/',
+                Authority: 'howlongtobeat.com',
+                'User-Agent':
+                    'Chrome: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.113 Safari/537.36',
+            },
+            body: JSON.stringify(data),
+        }
+    );
 }
 
 async function fetchSearchResults(appName: string) {
