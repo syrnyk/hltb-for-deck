@@ -1,148 +1,144 @@
 # Changelog
 
-All notable changes to this project will be documented in this file.
+## [2.0.4] - 2025-01-04
+
+### 🚀 Features
+
+- Added dynamic retrieval of HLTB search API (#9) by @syrnyk
+
+### 🐛 Bug Fixes
+
+- Improved special chars handling  (#8) by @syrnyk
+
+### ⚙️ Miscellaneous Tasks
+
+- Automatically add PR author and number to changelog if they are present by @morwy
+- Removed adding PR number since GitHub does that automatically by @morwy
 
 ## [2.0.3] - 2024-12-30
 
 ### 🐛 Bug Fixes
 
-- Handle special characters in game names preventing HLTB lookup (#7)
-
-### 💼 Other
-
-- *(deps)* Bump reedyuk/npm-version in the minor group (#6)
+- Handle special characters in game names preventing HLTB lookup (#7) by @morwy
 
 ### 📚 Documentation
 
-- Added instruction for manual installation to README.md
-- Added instruction for manual installation to README.md
-- Corrected download link for latest releases
+- Added instruction for manual installation to README.md by @morwy
+- Corrected download link for latest releases by @morwy
 
 ### ⚙️ Miscellaneous Tasks
 
-- Comitting CHANGELOG.md and incremented package version only for main branch
+- Comitting CHANGELOG.md and incremented package version only for main branch by @morwy
 
 ## [2.0.2] - 2024-12-29
 
 ### 🐛 Bug Fixes
 
-- Syncing with HLTB API changes
-
-### 💼 Other
-
-- *(deps)* Bump actions/download-artifact from 3 to 4
-- *(deps)* Bump actions/upload-artifact from 2 to 4
-- *(deps)* Bump actions/checkout from 2 to 4
-- *(deps)* Bump actions/setup-node from 1 to 4
+- Syncing with HLTB API changes by @morwy
 
 ### 📚 Documentation
 
-- Added information about HLTB API changes to README
+- Added information about HLTB API changes to README by @morwy
 
 ### ⚙️ Miscellaneous Tasks
 
-- Simplified release creation process (#5)
-- *(release)* Preparing for upcoming release (CHANGELOG.md, package.json)
-- Checking out latest changes for release creation
-- *(release)* Preparing for upcoming release (CHANGELOG.md, package.json)
-- Checking out latest changes for release creation
-- *(release)* Preparing for upcoming release (CHANGELOG.md, package.json)
+- Simplified release creation process (#5) by @morwy
+- Checking out latest changes for release creation by @morwy
 
 ## [2.0.1] - 2024-12-14
 
 ### 🐛 Bug Fixes
 
-- Update API to use appId again
-- Add try / catch to fix plugin breaking in desktop mode
-- Syncing with HLTB API changes
+- Update API to use appId again by @FrogTheFrog
+- Add try / catch to fix plugin breaking in desktop mode by @eXhumer
+- Syncing with HLTB API changes by @morwy
 
 ## [2.0.0] - 2024-09-12
 
 ### 🐛 Bug Fixes
 
-- Library component splicing
+- Library component splicing by @FrogTheFrog
 
 ### ⚙️ Miscellaneous Tasks
 
-- Bump to 2.0.0
+- Bump to 2.0.0 by @safijari
 
 ## [1.5.0] - 2024-08-21
 
 ### 🚀 Features
 
-- Cache API key on demand
+- Cache API key on demand by @FrogTheFrog
 
 ## [1.4.5] - 2024-08-20
 
 ### 🚀 Features
 
-- Migrate to new Decky API
-- Fetch HLTB api key from website
+- Migrate to new Decky API by @FrogTheFrog
+- Fetch HLTB api key from website by @biokillos
 
 ### 🐛 Bug Fixes
 
-- Use new path for app window patching
-- Use DOM to detect game launch transitions
+- Use new path for app window patching by @FrogTheFrog
+- Use DOM to detect game launch transitions by @FrogTheFrog
 
 ## [1.4.4] - 2024-08-04
 
 ### 🚀 Features
 
-- Hltb integration into app page
-- Add styles to work with the Clean Game View theme from CSS Loader
-- Update cache every 12 hours
-- Add option to remove "View Details" button
-- Hide stats if there are none
-- Add customization settings to stats
-- Add localization support
-- Add brazillian portuguese translations
+- Hltb integration into app page by @hulkrelax
+- Add styles to work with the Clean Game View theme from CSS Loader by @hulkrelax
+- Update cache every 12 hours by @hulkrelax
+- Add option to remove "View Details" button by @hulkrelax
+- Hide stats if there are none by @hulkrelax
+- Add customization settings to stats by @hulkrelax
+- Add localization support by @hulkrelax
+- Add brazillian portuguese translations by @hulkrelax
 
 ### 🐛 Bug Fixes
 
-- Wrong stat
-- Address issue with no style set at all
-- Handle accented characters, handle issues when games have same levenhtein distance
-- Navigate to external web issue
-- Special characters better normalized
-- Better null handling
-- Style issue with Clean styles
+- Wrong stat by @hulkrelax
+- Address issue with no style set at all by @hulkrelax
+- Handle accented characters, handle issues when games have same levenhtein distance by @hulkrelax
+- Navigate to external web issue by @hulkrelax
+- Special characters better normalized by @hulkrelax
+- Better null handling by @hulkrelax
+- Style issue with Clean styles by @hulkrelax
 
 ### 💼 Other
 
-- Install pnpm globally
-- Add image for decky store
-- Include package.json in releases
-- Release notes
-- Update decky-frontend-lib
+- Install pnpm globally by @hulkrelax
+- Add image for decky store by @hulkrelax
+- Include package.json in releases by @hulkrelax
+- Release notes by @hulkrelax
+- Update decky-frontend-lib by @Michsior14
 
 ### 🎨 Styling
 
-- Change button text
+- Change button text by @hulkrelax
 
 ### ⚙️ Miscellaneous Tasks
 
-- Boilerplate
-- Bump release to 1.0.0, add readme/release notes
-- Add build pipeline
-- Update description
-- Update readme
-- Bump version
-- Release notes and version bump
-- Bump version and release notes
-- Update to latest dfl
-- Release notes
-- Bump dfl
-- Update packages
-- Fix lockfile
-- Bump dfl
-- Slight tweaks, remove unnecessary index.js
-- V1.3.0 release
-- Slight tweaks
-- Release 1.3.1
-- Images for new features
-- Adding some of the release notes
-- Update release notes
-- Update release notes to credit translator
-- Bump version in package.json
+- Boilerplate by @hulkrelax
+- Bump release to 1.0.0, add readme/release notes by @hulkrelax
+- Add build pipeline by @hulkrelax
+- Update description by @hulkrelax
+- Update readme by @hulkrelax
+- Bump version by @hulkrelax
+- Release notes and version bump by @hulkrelax
+- Bump version and release notes by @hulkrelax
+- Update to latest dfl by @hulkrelax
+- Release notes by @hulkrelax
+- Bump dfl by @hulkrelax
+- Update packages by @hulkrelax
+- Fix lockfile by @hulkrelax
+- Slight tweaks, remove unnecessary index.js by @hulkrelax
+- V1.3.0 release by @hulkrelax
+- Slight tweaks by @hulkrelax
+- Release 1.3.1 by @hulkrelax
+- Images for new features by @hulkrelax
+- Adding some of the release notes by @hulkrelax
+- Update release notes by @hulkrelax
+- Update release notes to credit translator by @hulkrelax
+- Bump version in package.json by @hulkrelax
 
 <!-- generated by git-cliff -->
